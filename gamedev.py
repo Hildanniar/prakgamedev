@@ -66,7 +66,7 @@ player = Player(WIDTH/2, HEIGHT/2)
 #merubah warna Huruf
 font_color = (255, 255, 255)
 #memberi nama Font beserta ukurannya
-font_obj = pygame.font.Font("BerthaMelanie.TTF",23)
+font_obj = pygame.font.Font("Acme-Regular.TTF",23)
 #deskripsi yang akan muncul
 text = "Hildanniar Fauzi"
 #Font akan muncul dan warna menjadi putih
