@@ -7,9 +7,9 @@ import time
 WIDTH, HEIGHT = 400, 400  #lebar dan panjang layar
 pygame.display.set_caption('Smooth Movement') #pemberian nama output saat di running
 
-pygame.init()#menginisialisasi semua modul yang diperlukan untuk PyGame
+pygame.init() #menginisialisasi semua modul yang diperlukan untuk PyGame
 win = pygame.display.set_mode((WIDTH, HEIGHT)) #Memanggil nilai WIDTH, HEIGHT
-clock = pygame.time.Clock()#mengetahui Waktu yang diperlukan untuk benda bergerak
+clock = pygame.time.Clock() #mengetahui waktu yang diperlukan untuk benda bergerak
 
 #mengatur warna RGB Colors
 BLACK = (0, 0, 0)
@@ -22,7 +22,7 @@ YELLOW = (255, 253, 0, 1.0)
 GGRN = (25, 145, 112, 1.0)
 
 
-#membuat sebuah objek. Di setiap metode class harus selalu ada self sebagai 
+#membuat sebuah objek
 class Player:
     def __init__(self, x, y):
         self.x = int(x)
@@ -41,19 +41,19 @@ class Player:
         pygame.draw.rect(win, self.color, self.rect)
     
     def update(self): #mengupdate properti-properti pada object
-        self.velX = 0 #memberikan arah gerak pada object yaitu secara horizontal, dimulai dari titik 0
-        self.velY = 0 #memberikan arah gerak pada object yaitu secara vertical, dimulai dari titik 0
-        if self.left_pressed and not self.right_pressed: #jika yang ditekan adalah tombol kiri dan bukan tombol kanan maka arah gerak menuju arah kiri (koordinat x negatif)
-            if self.x >0: #memberikan batas agar objek tidak bergerak melewati batas display window (secara horizontal)
+        self.velX = 0 #arah gerak pada object yaitu secara horizontal, dimulai dari titik 0
+        self.velY = 0 #arah gerak pada object yaitu secara vertical, dimulai dari titik 0
+        if self.left_pressed and not self.right_pressed: #jika menekan tombol kiri maka arah gerak menuju arah kiri (koordinat x negatif)
+            if self.x >0: #memberikan batas untuk tidak melewati display window (horizontal)
                 self.velX = -self.speed
-        if self.right_pressed and not self.left_pressed: #jika yang ditekan adalah tombol kanan dan bukan tombol kiri maka arah gerak menuju arah kanan (koordinat x positif)
-            if self.x < 400 -32: #memberikan batas agar objek tidak bergerak melewati batas display window (secara horizontal)
+        if self.right_pressed and not self.left_pressed: #jika menekan tombol kanan maka arah gerak menuju arah kanan (koordinat x positif)
+            if self.x < 400 -32: #memberikan batas untuk tidak melewati display window (horizontal)
                 self.velX = self.speed
-        if self.up_pressed and not self.down_pressed: #jika yang ditekan adalah tombol atas dan bukan tombol bawah maka arah gerak menuju arah atas (koordinat y positif)
-            if self.y > 0: #memberikan batas agar objek tidak bergerak melewati batas display window (secara vertical)
+        if self.up_pressed and not self.down_pressed: #jika menekan tombol atas maka arah gerak menuju arah atas (koordinat y positif)
+            if self.y > 0: #memberikan batas untuk tidak melewati display window ( vertical)
                 self.velY = -self.speed
-        if self.down_pressed and not self.up_pressed: #jika yang ditekan adalah tombol bawah dan bukan tombol atas maka arah gerak menuju arah bawah (koordinat y negatif)
-            if self.y < 400 - 32: #memberikan batas agar objek tidak bergerak melewati batas display window (secara vertical)
+        if self.down_pressed and not self.up_pressed: #jika menekan tombol bawah maka arah gerak menuju arah bawah (koordinat y negatif)
+            if self.y < 400 - 32: #memberikan batas untuk tidak melewati display window (vertical)
                 self.velY = self.speed
 
         self.x += self.velX 
@@ -61,13 +61,13 @@ class Player:
 
         self.rect = pygame.Rect(int(self.x), int(self.y), 32, 32)
 
-#Hegiht dan Widht tadi yaitu 400 dan 400 di bagi menjadi 2 
+#membagi Hegiht dan Widht menjadi 2
 player = Player(WIDTH/2, HEIGHT/2)
-#untuk merubah Warna Huruf
+#merubah warna Huruf
 font_color = (255, 255, 255)
-#mendefinisikan Font apa dan besar fontnya
+#memberi nama Font beserta ukurannya
 font_obj = pygame.font.Font("BerthaMelanie.TTF",23)
-#Tulisan akan muncul di layar
+#deskripsi yang akan muncul
 text = "Hildanniar Fauzi"
 #Font akan muncul dan warna menjadi putih
 img = font_obj.render(text, True, (WHITE))
@@ -77,7 +77,7 @@ rect.topleft = (20,20)
 cursor = Rect(rect.topright, (3, rect.height))
 
 
-#membuat keyboard down dan keybord up, Keyboard left dan right
+#mengatur arah keyboard
 while True:
 
     for event in pygame.event.get():
@@ -116,7 +116,7 @@ while True:
                     rect.size = img.get_size()
                     cursor.topleft = rect.topright
                     
-#Menampilkan warna background
+    #menampilkan warna background
     win.fill((RED))
     pygame.draw.rect(win, (WHITE), player)
 
@@ -126,7 +126,7 @@ while True:
     pygame.display.update()
 
     player.update()
-    #Menampilkan hasil dari semuanya
+    #Menampilkan hasil keselurahn
     pygame.display.flip()
 
     clock.tick(120)
